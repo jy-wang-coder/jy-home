@@ -1,0 +1,39 @@
+class Solution(object):
+    def weishu(self,x):
+        """
+        输出数字x的各个位数组成的列表
+        """
+        num=x
+        a=[]
+        while num!=0:
+            a.append(num%10)
+            num=num//10
+        return (a)
+
+    def sanweishu(self,list,i):
+        """
+        :type x: int
+        :rtype: int
+        """
+        rever_x=0
+        for j in range(i):
+            rever_x=rever_x+list[j]*(10**(i-j-1))
+        return(rever_x)
+    
+    def reverse(self,x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        if x<0:
+            x_weishu=self.weishu(-1*x)
+            x_len=len(x_weishu)
+            x_reverse=-1*self.sanweishu(x_weishu,x_len)
+        else:
+            x_weishu=self.weishu(x)
+            x_len=len(x_weishu)
+            x_reverse=self.sanweishu(x_weishu,x_len)
+        if -2147483648<x_reverse<2147483647:
+            return x_reverse
+        else:
+            return(0)
